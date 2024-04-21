@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj0opkr5qlt6x"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_vi1dm"]
+[ext_resource type="PackedScene" uid="uid://cduey82po480f" path="res://scenes/player_character.tscn" id="2_0rmud"]
+[ext_resource type="Script" path="res://scripts/player_input_provider.gd" id="3_klkdw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nxqo"]
+size = Vector2(10, 4)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character", "input_provider", "collision_shape")]
+script = ExtResource("1_vi1dm")
+speed = 60.0
+character = NodePath("PlayerCharacter")
+_keys = 1
+input_provider = NodePath("InputProvider")
+collision_shape = NodePath("CollisionShape2D")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_0rmud")]
+
+[node name="InputProvider" type="Node" parent="."]
+script = ExtResource("3_klkdw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6nxqo")

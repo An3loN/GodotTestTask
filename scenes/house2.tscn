@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dijadtb6umkmp"]
+
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_nym1m"]
+[ext_resource type="Texture2D" uid="uid://c3wl2kcp5irfm" path="res://art/house2.png" id="2_y0seo"]
+[ext_resource type="Script" path="res://scripts/level_changer.gd" id="3_t32pu"]
+[ext_resource type="Script" path="res://scripts/spawn_point.gd" id="4_p4nqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rkf5"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7r30"]
+size = Vector2(64, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w36sn"]
+
+[node name="House2" type="StaticBody2D" node_paths=PackedStringArray("enter_level_changer", "spawn_point", "level_changer", "enter_area")]
+collision_layer = 3
+script = ExtResource("1_nym1m")
+house_id = "house2"
+enter_level_changer = NodePath("LevelChanger")
+spawn_point = NodePath("SpawnPoint2")
+level_changer = NodePath("LevelChanger")
+enter_area = NodePath("EnterArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("2_y0seo")
+
+[node name="LevelChanger" type="Area2D" parent="."]
+position = Vector2(0, -13)
+script = ExtResource("3_t32pu")
+target_level_name = "house1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelChanger"]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_1rkf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0149994, -13.69)
+shape = SubResource("RectangleShape2D_m7r30")
+
+[node name="SpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(0, 25)
+script = ExtResource("4_p4nqi")
+tag = "house1"
+
+[node name="EnterArea" type="Area2D" parent="."]
+position = Vector2(0, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea"]
+position = Vector2(-0.0149994, 19.81)
+shape = SubResource("RectangleShape2D_w36sn")

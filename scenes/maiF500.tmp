@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://1g2bkictn578"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_8rnvj"]
+[ext_resource type="Resource" uid="uid://5ibw2ecj5vf0" path="res://levels/levels.tres" id="2_3sl0o"]
+[ext_resource type="PackedScene" uid="uid://dj0opkr5qlt6x" path="res://scenes/player.tscn" id="2_m2r1m"]
+[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_2cxqt"]
+[ext_resource type="Script" path="res://scripts/hud_controller.gd" id="5_bmxja"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("camera_controller", "level_container_node")]
+script = ExtResource("1_8rnvj")
+start_level_name = "outdoors"
+player_character_scene = ExtResource("2_m2r1m")
+camera_controller = NodePath("CameraController")
+levels_data_container = ExtResource("2_3sl0o")
+level_container_node = NodePath("LevelContainer")
+
+[node name="LevelContainer" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="CameraController" type="Node" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("4_2cxqt")
+camera = NodePath("../Camera2D")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_bmxja")

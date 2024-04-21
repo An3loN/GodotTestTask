@@ -1,0 +1,112 @@
+[gd_scene load_steps=21 format=3 uid="uid://dehvqrgh315ff"]
+
+[ext_resource type="Texture2D" uid="uid://bcplfx5wab4yi" path="res://art/beach.png" id="1_eypno"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_fdnvg"]
+[ext_resource type="Script" path="res://scripts/spawn_point.gd" id="3_4pcx3"]
+[ext_resource type="PackedScene" uid="uid://jcrhyf7pu6sa" path="res://scenes/house1.tscn" id="4_bg8ii"]
+[ext_resource type="PackedScene" uid="uid://dijadtb6umkmp" path="res://scenes/house2.tscn" id="6_6ecle"]
+[ext_resource type="PackedScene" uid="uid://b3cx4msomtkjg" path="res://scenes/key.tscn" id="7_itcd7"]
+[ext_resource type="PackedScene" uid="uid://cu1y0236xnoj" path="res://scenes/house3.tscn" id="7_rrrlm"]
+[ext_resource type="PackedScene" uid="uid://dqiug7kr3yvfp" path="res://scenes/items/alarm.tscn" id="10_wn60v"]
+[ext_resource type="PackedScene" uid="uid://dveej150cnaej" path="res://scenes/items/amulet.tscn" id="11_5k3jj"]
+[ext_resource type="PackedScene" uid="uid://dsnkmx5a1opas" path="res://scenes/items/teleporter.tscn" id="11_6gi1n"]
+[ext_resource type="PackedScene" uid="uid://capsr4kk1uph4" path="res://scenes/interactives/umbrella.tscn" id="12_743l5"]
+[ext_resource type="PackedScene" uid="uid://bevagu3bitnou" path="res://scenes/items/apple.tscn" id="12_ia8cv"]
+[ext_resource type="PackedScene" uid="uid://co2p5xf8liu2x" path="res://scenes/items/chilli.tscn" id="13_ppc1u"]
+[ext_resource type="PackedScene" uid="uid://bd0aukf206ieh" path="res://scenes/items/olives.tscn" id="14_n62dg"]
+[ext_resource type="PackedScene" uid="uid://dqld5difcaxng" path="res://scenes/items/orange.tscn" id="15_j8c3h"]
+[ext_resource type="PackedScene" uid="uid://ckkuhxua8pbfs" path="res://scenes/items/token.tscn" id="16_3yc3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emtv0"]
+size = Vector2(298, 690)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3w8e7"]
+size = Vector2(836.25, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssdjn"]
+size = Vector2(348, 707)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyt6e"]
+size = Vector2(865, 237)
+
+[node name="Outdoors" type="Node2D"]
+script = ExtResource("1_fdnvg")
+
+[node name="Beach" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("1_eypno")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-38.83, 158.65)
+script = ExtResource("3_4pcx3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-355, -6)
+shape = SubResource("RectangleShape2D_emtv0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.125, -256)
+shape = SubResource("RectangleShape2D_3w8e7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(382, 2.5)
+shape = SubResource("RectangleShape2D_ssdjn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(24.5, 304.5)
+shape = SubResource("RectangleShape2D_dyt6e")
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="House1" parent="." instance=ExtResource("4_bg8ii")]
+position = Vector2(-72, 91)
+
+[node name="key" parent="." instance=ExtResource("7_itcd7")]
+position = Vector2(-19, 123)
+
+[node name="key2" parent="." instance=ExtResource("7_itcd7")]
+position = Vector2(-93, 133)
+
+[node name="House2" parent="." instance=ExtResource("6_6ecle")]
+position = Vector2(5, 23)
+
+[node name="House3" parent="." instance=ExtResource("7_rrrlm")]
+position = Vector2(124, 99)
+
+[node name="Teleporter" parent="." instance=ExtResource("11_6gi1n")]
+position = Vector2(-76, 161)
+
+[node name="Umbrella" parent="." instance=ExtResource("12_743l5")]
+position = Vector2(36, 164)
+
+[node name="Apple" parent="." instance=ExtResource("10_wn60v")]
+position = Vector2(-122, 106)
+
+[node name="Apple2" parent="." instance=ExtResource("10_wn60v")]
+position = Vector2(-189, 28)
+
+[node name="Apple3" parent="." instance=ExtResource("11_5k3jj")]
+position = Vector2(-171, 15)
+
+[node name="Apple4" parent="." instance=ExtResource("12_ia8cv")]
+position = Vector2(-153, 31)
+
+[node name="Apple5" parent="." instance=ExtResource("13_ppc1u")]
+position = Vector2(-136, 13)
+
+[node name="Apple6" parent="." instance=ExtResource("14_n62dg")]
+position = Vector2(-109, 33)
+
+[node name="Apple7" parent="." instance=ExtResource("15_j8c3h")]
+position = Vector2(-85, 14)
+
+[node name="Teleporter2" parent="." instance=ExtResource("11_6gi1n")]
+position = Vector2(-62, 33)
+
+[node name="Apple8" parent="." instance=ExtResource("16_3yc3t")]
+position = Vector2(-42, 15)

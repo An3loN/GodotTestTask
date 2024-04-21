@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://capsr4kk1uph4"]
+
+[ext_resource type="Texture2D" uid="uid://cy431l7g7yyrc" path="res://art/umbrella.png" id="1_xvnjc"]
+[ext_resource type="Script" path="res://scripts/interactives/umbrella.gd" id="1_y3kjp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfger"]
+radius = 15.0333
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guh5l"]
+size = Vector2(13, 14)
+
+[node name="Umbrella" type="StaticBody2D" node_paths=PackedStringArray("sprite_renderer", "interaction_area")]
+script = ExtResource("1_y3kjp")
+sprite_renderer = NodePath("Sprite2D")
+hud_message = "Umbrella activated"
+interaction_area = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7.125)
+texture = ExtResource("1_xvnjc")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rfger")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -6)
+shape = SubResource("RectangleShape2D_guh5l")

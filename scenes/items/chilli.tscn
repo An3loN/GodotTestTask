@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://co2p5xf8liu2x"]
+
+[ext_resource type="Script" path="res://scripts/items/chilli.gd" id="1_q4irm"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_ohg86"]
+[ext_resource type="Texture2D" uid="uid://bsv4gfer55uc2" path="res://art/pepper.png" id="2_ypw83"]
+
+[sub_resource type="Resource" id="Resource_xcv5b"]
+script = ExtResource("2_ohg86")
+item_name = "Chilli pepper"
+item_description = "Drastically damages"
+
+[node name="Chilli" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_q4irm")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_xcv5b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ypw83")

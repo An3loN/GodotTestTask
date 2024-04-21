@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dveej150cnaej"]
+
+[ext_resource type="Script" path="res://scripts/items/amulet.gd" id="1_r0t5g"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_c8wbs"]
+[ext_resource type="Texture2D" uid="uid://dyf6kcr35hnuv" path="res://art/amulet.png" id="3_pag08"]
+
+[sub_resource type="Resource" id="Resource_aoead"]
+script = ExtResource("2_c8wbs")
+item_name = "Amulet"
+item_description = "Damages on picking up but provides additional maximum health"
+
+[node name="Amulet" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_r0t5g")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_aoead")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_pag08")

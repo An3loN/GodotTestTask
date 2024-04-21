@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bevagu3bitnou"]
+
+[ext_resource type="Script" path="res://scripts/items/apple.gd" id="1_okws4"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_7btud"]
+[ext_resource type="Texture2D" uid="uid://dihrwswteqj7c" path="res://art/apple.png" id="2_hy2to"]
+
+[sub_resource type="Resource" id="Resource_5b8do"]
+script = ExtResource("2_7btud")
+item_name = "Apple"
+item_description = "Restores some health"
+
+[node name="Apple" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_okws4")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_5b8do")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hy2to")

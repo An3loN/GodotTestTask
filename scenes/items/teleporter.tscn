@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsnkmx5a1opas"]
+
+[ext_resource type="Script" path="res://scripts/items/teleporter.gd" id="1_rt825"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_5a6e2"]
+[ext_resource type="Texture2D" uid="uid://d0mho6sjwqphb" path="res://art/alarm_potion.png" id="3_04q84"]
+
+[sub_resource type="Resource" id="Resource_h2qfx"]
+script = ExtResource("2_5a6e2")
+item_name = "Alarm potion"
+item_description = "Teleports in random direction on 10m"
+
+[node name="Teleporter" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_rt825")
+teleport_distance = 100.0
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_h2qfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_04q84")

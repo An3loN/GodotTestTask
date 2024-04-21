@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqld5difcaxng"]
+
+[ext_resource type="Script" path="res://scripts/items/orange.gd" id="1_62kfn"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_4qy0v"]
+[ext_resource type="Texture2D" uid="uid://doyax36sj2uij" path="res://art/orange.png" id="2_bnid5"]
+
+[sub_resource type="Resource" id="Resource_5tefl"]
+script = ExtResource("2_4qy0v")
+item_name = "Orange"
+item_description = "Increases both health and maximum health"
+
+[node name="Orange" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_62kfn")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_5tefl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bnid5")

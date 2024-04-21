@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="LevelsDataContainer" load_steps=9 format=3 uid="uid://5ibw2ecj5vf0"]
+
+[ext_resource type="Script" path="res://scripts/level_data.gd" id="1_fo8mu"]
+[ext_resource type="PackedScene" uid="uid://dehvqrgh315ff" path="res://scenes/level_scenes/outdoors.tscn" id="1_vi584"]
+[ext_resource type="Script" path="res://scripts/resource_scripts/levels_data_container.gd" id="2_ibbq1"]
+[ext_resource type="PackedScene" uid="uid://c4vxcktjan3bj" path="res://scenes/level_scenes/house1.tscn" id="3_81ykt"]
+[ext_resource type="PackedScene" uid="uid://lm5kq2wq0kvo" path="res://scenes/level_scenes/house3.tscn" id="4_uadpu"]
+
+[sub_resource type="Resource" id="Resource_q4kuo"]
+script = ExtResource("1_fo8mu")
+level_name = "outdoors"
+level_scene = ExtResource("1_vi584")
+
+[sub_resource type="Resource" id="Resource_dh51c"]
+script = ExtResource("1_fo8mu")
+level_name = "house1"
+level_scene = ExtResource("3_81ykt")
+
+[sub_resource type="Resource" id="Resource_oflx2"]
+script = ExtResource("1_fo8mu")
+level_name = "house3"
+level_scene = ExtResource("4_uadpu")
+
+[resource]
+script = ExtResource("2_ibbq1")
+levels_data = Array[ExtResource("1_fo8mu")]([SubResource("Resource_q4kuo"), SubResource("Resource_dh51c"), SubResource("Resource_oflx2")])

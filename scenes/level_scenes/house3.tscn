@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://lm5kq2wq0kvo"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_yst2a"]
+[ext_resource type="Script" path="res://scripts/spawn_point.gd" id="2_wkpae"]
+[ext_resource type="Script" path="res://scripts/level_changer.gd" id="3_yn7rf"]
+[ext_resource type="Texture2D" uid="uid://bnyuauspvxqdc" path="res://art/wood.png" id="7_n5n8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_065hd"]
+size = Vector2(20, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyxvj"]
+size = Vector2(20, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tab3"]
+size = Vector2(164, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ygwe"]
+size = Vector2(150, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ftar"]
+
+[node name="House3" type="Node2D"]
+script = ExtResource("1_yst2a")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-70, 0)
+shape = SubResource("RectangleShape2D_065hd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(72, 0)
+shape = SubResource("RectangleShape2D_tyxvj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_4tab3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 51)
+shape = SubResource("RectangleShape2D_3ygwe")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0.105, 21.61)
+script = ExtResource("2_wkpae")
+
+[node name="LevelChanger" type="Area2D" parent="."]
+position = Vector2(-0.85, 40.885)
+script = ExtResource("3_yn7rf")
+target_level_name = "outdoors"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelChanger"]
+shape = SubResource("RectangleShape2D_5ftar")
+
+[node name="FloorSprite" type="Sprite2D" parent="."]
+modulate = Color(0.65834, 0.65834, 0.65834, 1)
+z_index = -2
+texture_repeat = 2
+position = Vector2(1, 0.500002)
+texture = ExtResource("7_n5n8k")
+region_enabled = true
+region_rect = Rect2(0, 0, 122, 80)

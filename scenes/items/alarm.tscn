@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqiug7kr3yvfp"]
+
+[ext_resource type="Script" path="res://scripts/items/alarm.gd" id="1_gl3bv"]
+[ext_resource type="Texture2D" uid="uid://d0mho6sjwqphb" path="res://art/alarm_potion.png" id="2_0stm3"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_n02w0"]
+
+[sub_resource type="Resource" id="Resource_6n1u2"]
+script = ExtResource("2_n02w0")
+item_name = "Alarm potion"
+item_description = "Closes every house"
+
+[node name="Alarm" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_gl3bv")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_6n1u2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0stm3")

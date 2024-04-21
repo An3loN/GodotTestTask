@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckkuhxua8pbfs"]
+
+[ext_resource type="Script" path="res://scripts/items/item.gd" id="1_kffuh"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_aibx1"]
+[ext_resource type="Texture2D" uid="uid://clmp71gk13xkw" path="res://art/token.png" id="3_ejckb"]
+
+[sub_resource type="Resource" id="Resource_8udqa"]
+script = ExtResource("2_aibx1")
+item_name = "Token"
+item_description = "Just a token"
+
+[node name="Token" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_kffuh")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_8udqa")
+usable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ejckb")

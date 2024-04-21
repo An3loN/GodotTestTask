@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd0aukf206ieh"]
+
+[ext_resource type="Script" path="res://scripts/items/olives.gd" id="1_23bj4"]
+[ext_resource type="Texture2D" uid="uid://nvgkfsg615hw" path="res://art/olives.png" id="2_juonl"]
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="2_oqxgs"]
+
+[sub_resource type="Resource" id="Resource_x3k1c"]
+script = ExtResource("2_oqxgs")
+item_name = "Olives"
+item_description = "Decreases maximum health"
+
+[node name="Olives" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
+script = ExtResource("1_23bj4")
+sprite_renderer = NodePath("Sprite2D")
+item_data = SubResource("Resource_x3k1c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_juonl")
