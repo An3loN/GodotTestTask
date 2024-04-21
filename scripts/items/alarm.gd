@@ -1,4 +1,6 @@
 extends Item
 
-func _on_use(player: Player):
-	House.close_all()
+func _picked_up(player: Player):
+	on_use = func(player: Player):
+		House.close_all()
+	super(player)

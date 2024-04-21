@@ -1,8 +1,10 @@
 class_name Pickupable
 extends Area2D
 
-@export var pick_up_radius := 1
+@export var pick_up_radius := 5
 @onready var collision_shape: CollisionShape2D
+var pickup_condition: Callable = func(player: Player):
+		return true
 
 func _ready():
 	if not has_node("CollisionShape"):
@@ -19,6 +21,8 @@ func _ready():
 
 func on_body_entered(body: PhysicsBody2D) -> void:
 	if body is Player:
+		if not pickup_condition.call(body):
+			return
 		_picked_up(body)
 		queue_free()
 

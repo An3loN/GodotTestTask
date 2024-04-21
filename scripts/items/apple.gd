@@ -1,4 +1,6 @@
 extends Item
 
-func _on_use(player: Player):
-	player.health += 1
+func _picked_up(player: Player):
+	on_use = func(player: Player):
+		player.health += 1
+	super(player)

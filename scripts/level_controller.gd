@@ -34,6 +34,7 @@ func set_level(level_name: String) -> void:
 	if active_level_data:
 		level_state = LevelState.EXITING
 		spawn_tag = active_level_data.level_name
+		_save_all_persistent()
 		PersistentDataController.save_all_providers()
 		PersistentDataController.clear_providers()
 		active_level.queue_free()
@@ -67,16 +68,23 @@ func _provide_dependencies():
 				_:
 					printerr("No such controller registered in level_controller as %s: " % requested_controller)
 
+func _save_all_persistent():
+	for persistent_node in active_level.get_tree().get_nodes_in_group("persistent"):
+		if active_level.is_ancestor_of(persistent_node):
+			PersistentObjectController.save_node(persistent_node)
+
 func _instantiate_persistent_objects():
 	if not active_level_data.level_name in PersistentObjectController.persistent_objects_dict:
 		PersistentObjectController.persistent_objects_dict[active_level_data.level_name] = {}
 		for persistent_node in active_level.get_tree().get_nodes_in_group("persistent"):
 			if active_level.is_ancestor_of(persistent_node):
 				PersistentObjectController.register_persistent(persistent_node, active_level_data.level_name)
+				PersistentObjectController.save_node(persistent_node)
 				persistent_node.free()
 		var packed_level = PackedScene.new()
 		packed_level.pack(active_level)
 		active_level_data.level_scene = packed_level
+		print(PersistentObjectController.persistent_objects_dict)
 	for name in PersistentObjectController.persistent_objects_dict[active_level_data.level_name]:
 		var packed_node := PersistentObjectController.persistent_objects_dict\
 				[active_level_data.level_name][name] as PackedScene

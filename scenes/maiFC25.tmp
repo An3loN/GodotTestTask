@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_2cxqt"]
 [ext_resource type="Script" path="res://scripts/hud_controller.gd" id="5_bmxja"]
 [ext_resource type="Texture2D" uid="uid://ciyqwskv0sr0w" path="res://art/key.png" id="6_laiek"]
-[ext_resource type="PackedScene" uid="uid://dn31yc3m3u2n0" path="res://scenes/ui_scenes/inventory_viewer.tscn" id="7_yfmfl"]
+[ext_resource type="PackedScene" uid="uid://dn31yc3m3u2n0" path="res://scenes/ui_scenes/ItemStorageViewer.tscn" id="7_yfmfl"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("camera_controller", "hud_controller", "level_container")]
 script = ExtResource("1_8rnvj")
@@ -28,7 +28,7 @@ camera = NodePath("../Camera2D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HudController" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("hp_label", "max_hp_label", "keys_label", "interaction_label", "popup_container", "message_container", "inventory_viewer")]
+[node name="HudController" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("hp_label", "max_hp_label", "keys_label", "interaction_label", "popup_container", "message_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +42,6 @@ keys_label = NodePath("PanelContainer/HFlowContainer/HBoxContainer2/KeysLabel")
 interaction_label = NodePath("InteractionLabel")
 popup_container = NodePath("PopupContainer")
 message_container = NodePath("VBoxContainer")
-inventory_viewer = NodePath("ItemStorageViewer")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HudController"]
 layout_mode = 0

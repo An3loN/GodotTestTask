@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://74mjpegg7tty"]
+
+[node name="ItemActionButton" type="Button"]
+custom_minimum_size = Vector2(0, 35)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2

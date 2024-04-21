@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn31yc3m3u2n0"]
+
+[ext_resource type="Script" path="res://scripts/inventory_viewer.gd" id="1_8s7fp"]
+[ext_resource type="PackedScene" uid="uid://doq1w8fhexmv" path="res://scenes/ui_scenes/item_data_button.tscn" id="2_1jxf4"]
+[ext_resource type="PackedScene" uid="uid://74mjpegg7tty" path="res://scenes/ui_scenes/item_action_button.tscn" id="3_bedll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq0f1"]
+bg_color = Color(0.2, 0.2, 0.2, 0.682353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc4ay"]
+bg_color = Color(0.2, 0.2, 0.2, 0.682353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxwmq"]
+bg_color = Color(0.2, 0.2, 0.2, 0.682353)
+
+[node name="ItemStorageViewer" type="Panel" node_paths=PackedStringArray("item_buttons_container", "buttons_container", "item_name_label", "item_description_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8s7fp")
+item_buttons_container = NodePath("VBoxContainer/ItemsPanel/ItemsGrid")
+buttons_container = NodePath("VBoxContainer/HBoxContainer/ButtonsPanel/ButtonsContainer")
+item_name_label = NodePath("VBoxContainer/HBoxContainer/ItemInfoPanel/VBoxContainer/NameLabel")
+item_description_label = NodePath("VBoxContainer/HBoxContainer/ItemInfoPanel/VBoxContainer/DescriptionLabel")
+item_button_scene = ExtResource("2_1jxf4")
+item_action_button_scene = ExtResource("3_bedll")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemsPanel" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cq0f1")
+
+[node name="ItemsGrid" type="GridContainer" parent="VBoxContainer/ItemsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+columns = 13
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ItemInfoPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_yc4ay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ItemInfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/HBoxContainer/ItemInfoPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Empty"
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer/HBoxContainer/ItemInfoPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Empty cell
+"
+
+[node name="ButtonsPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bxwmq")
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ButtonsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -11,10 +11,14 @@ static func register_persistent(persistent_node: Node, level_name: String = curr
 		persistent_node.add_to_group("persistent")
 	if not level_name in persistent_objects_dict:
 		return
-	persistent_node.tree_exited.connect(func():
+	persistent_node.tree_exiting.connect(func():
+			print(level_controller.level_state)
 			if level_controller.level_state == LevelController.LevelState.ACTIVE and level_name == current_level_name:
+				print(persistent_node.name)
 				persistent_objects_dict[level_name].erase(persistent_node.name))
-	persistent_objects_dict[level_name][persistent_node.name] = pack_node(persistent_node)
+				
+static func save_node(node: Node, level_name: String = current_level_name):
+	persistent_objects_dict[level_name][node.name] = pack_node(node)
 
 static func pack_node(node: Node) -> PackedScene:
 	for child in node.get_children():

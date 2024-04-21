@@ -2,6 +2,7 @@ class_name Interactive
 extends StaticBody2D
 
 @export var hud_message: String
+@export var message_color: Color = Color.WHITE
 @export var interaction_area: Area2D
 var requested_controllers = ["HudController"]
 var hud_controller: HudController
@@ -48,7 +49,7 @@ func on_body_exited(body: PhysicsBody2D) -> void:
 		player_in_area = false
 
 func activate():
-	hud_controller.show_message(hud_message)
+	hud_controller.show_message(hud_message, message_color)
 	_activate()
 
 func _activate():

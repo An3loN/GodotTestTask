@@ -3,6 +3,7 @@ extends Node
 
 signal moved(direction: Vector2)
 signal interacted()
+signal opened_inventory()
 
 var enabled = true
 var move_input := Vector2(0.0, 0.0)
@@ -16,3 +17,5 @@ func _process(_delta):
 		moved.emit(new_move_input)
 	if Input.is_action_just_pressed("interact"):
 		interacted.emit()
+	if Input.is_action_just_pressed("open_inventory"):
+		opened_inventory.emit()

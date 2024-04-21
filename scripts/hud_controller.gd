@@ -8,23 +8,30 @@ extends Control
 @export var interaction_label: Label
 @export var popup_container: Container
 @export var message_container: Container
+@export var inventory_viewer: InventoryViewer
 var level_controller: LevelController
-var windows: Array[Window]
+var input_blockators: Array[Node]
 
 func initialize_level(_level: Level, player: Player):
+	input_blockators = []
+	inventory_viewer.visible = false
+	inventory_viewer.player = player
 	hp_label.text = str(player.health)
 	max_hp_label.text = str(player.max_health)
 	keys_label.text = str(player.keys)
 	player.health_changed.connect(func(new_health): hp_label.text = str(new_health))
 	player.max_health_changed.connect(func(new_max_health): max_hp_label.text = str(new_max_health))
 	player.keys_changed.connect(func(new_keys): keys_label.text = str(new_keys))
+	inventory_viewer.target_storage = player.item_storage
 
 func set_interaction_label_visible(visibility: bool):
 	interaction_label.visible = visibility
 
-func show_message(message: String):
+func show_message(message: String, color: Color = Color.WHITE):
 	var label = Label.new()
 	label.text = message
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font_color = color
 	message_container.add_child(label)
 	var auto_destroy_timer = Timer.new()
 	auto_destroy_timer.wait_time = message_life_time
@@ -33,6 +40,16 @@ func show_message(message: String):
 	await auto_destroy_timer.timeout
 	label.queue_free()
 	auto_destroy_timer.queue_free()
+
+func toggle_inventory():
+	inventory_viewer.visible = not inventory_viewer.visible
+	var visibility = inventory_viewer.visible
+	if visibility:
+		inventory_viewer.clear_selected()
+		inventory_viewer.update()
+		add_input_blockator(inventory_viewer)
+	else:
+		remove_input_blockator(inventory_viewer)
 
 func accept(text: String, on_accept: Callable, on_cancel: Callable) -> void:
 	var accept_window = AcceptDialog.new()
@@ -48,16 +65,19 @@ func accept(text: String, on_accept: Callable, on_cancel: Callable) -> void:
 
 func register_window(window: Window) -> void:
 	popup_container.add_child(window)
-	windows.append(window)
+	add_input_blockator(window)
 	window.popup_centered()
-	window.tree_exited.connect(func(): remove_window(window))
+	window.tree_exited.connect(func(): remove_input_blockator(window))
+
+func add_input_blockator(input_blockator: Node) -> void:
+	input_blockators.append(input_blockator)
 	level_controller.set_player_input_enabled(false)
 
-func remove_window(window: Window) -> void:
-	if window in windows:
-		windows.erase(window)
-	if len(windows) == 0:
-		on_no_windows_left()
+func remove_input_blockator(input_blockator: Node) -> void:
+	if input_blockator in input_blockators:
+		input_blockators.erase(input_blockator)
+	if len(input_blockators) == 0:
+		on_no_input_blockators_left()
 
-func on_no_windows_left():
+func on_no_input_blockators_left():
 	level_controller.set_player_input_enabled(true)

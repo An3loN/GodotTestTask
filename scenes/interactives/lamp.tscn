@@ -13,6 +13,7 @@ size = Vector2(13, 14)
 script = ExtResource("1_13wk0")
 sprite_renderer = NodePath("Sprite2D")
 hud_message = "Lamp activated"
+message_color = Color(1, 1, 0, 1)
 interaction_area = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

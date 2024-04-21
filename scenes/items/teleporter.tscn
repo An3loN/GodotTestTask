@@ -6,12 +6,11 @@
 
 [sub_resource type="Resource" id="Resource_h2qfx"]
 script = ExtResource("2_5a6e2")
-item_name = "Alarm potion"
+item_name = "Teleport potion"
 item_description = "Teleports in random direction on 10m"
 
 [node name="Teleporter" type="Area2D" node_paths=PackedStringArray("sprite_renderer")]
 script = ExtResource("1_rt825")
-teleport_distance = 100.0
 sprite_renderer = NodePath("Sprite2D")
 item_data = SubResource("Resource_h2qfx")
 
