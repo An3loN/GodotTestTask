@@ -12,9 +12,7 @@ static func register_persistent(persistent_node: Node, level_name: String = curr
 	if not level_name in persistent_objects_dict:
 		return
 	persistent_node.tree_exiting.connect(func():
-			print(level_controller.level_state)
 			if level_controller.level_state == LevelController.LevelState.ACTIVE and level_name == current_level_name:
-				print(persistent_node.name)
 				persistent_objects_dict[level_name].erase(persistent_node.name))
 				
 static func save_node(node: Node, level_name: String = current_level_name):

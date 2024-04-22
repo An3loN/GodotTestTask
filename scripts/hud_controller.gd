@@ -33,6 +33,7 @@ func show_message(message: String, color: Color = Color.WHITE):
 	label.label_settings = LabelSettings.new()
 	label.label_settings.font_color = color
 	message_container.add_child(label)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var auto_destroy_timer = Timer.new()
 	auto_destroy_timer.wait_time = message_life_time
 	auto_destroy_timer.autostart = true

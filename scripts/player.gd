@@ -95,6 +95,8 @@ func die():
 
 func set_health(new_health: int) -> void:
 	_health = new_health if new_health <= max_health else max_health
+	if _health <= 0:
+		died.emit()
 	health_changed.emit(health)
 
 func set_max_health(new_max_health: int) -> void:

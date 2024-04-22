@@ -3,7 +3,7 @@ extends Area2D
 
 @export var pick_up_radius := 5
 @onready var collision_shape: CollisionShape2D
-var pickup_condition: Callable = func(player: Player):
+var pickup_condition: Callable = func(_player: Player):
 		return true
 
 func _ready():

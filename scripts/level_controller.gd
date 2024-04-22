@@ -46,6 +46,7 @@ func set_level(level_name: String) -> void:
 	player = active_level.spawn_character(player_character_scene, spawn_tag) as Player
 	_provide_dependencies()
 	camera_controller.target = player
+	player.died.connect(player.get_tree().reload_current_scene)
 	_instantiate_persistent_objects()
 	PersistentDataController.load_all_providers()
 	hud_controller.initialize_level(active_level, player)
@@ -85,6 +86,7 @@ func _instantiate_persistent_objects():
 		packed_level.pack(active_level)
 		active_level_data.level_scene = packed_level
 		print(PersistentObjectController.persistent_objects_dict)
+		
 	for name in PersistentObjectController.persistent_objects_dict[active_level_data.level_name]:
 		var packed_node := PersistentObjectController.persistent_objects_dict\
 				[active_level_data.level_name][name] as PackedScene

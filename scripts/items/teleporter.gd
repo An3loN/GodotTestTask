@@ -1,6 +1,6 @@
 extends Item
 
-func _picked_up(player: Player):
+func _picked_up(player_: Player):
 	on_use = func(player: Player):
 			var teleport_distance := 10.0
 			var step := 0.2
@@ -38,4 +38,4 @@ func _picked_up(player: Player):
 					return
 			player.position += shape_cast.target_position
 			shape_cast.free()
-	super(player)
+	super(player_)
